@@ -6,9 +6,9 @@
 
 ## 👌 &nbsp; Features
 
-**Tiny**. Just 23 lines of code.
-**Functional**. Write your method using functions.
-**Async**. Design to use with `async/await`
+- **Tiny**. Just 23 lines of code.
+- **Functional**. Write your method using functions.
+- **Async**. Design to use with `async/await`
 
 ## 💻 &nbsp; Usage
 
@@ -62,7 +62,8 @@ Each route is a single basic http method that you import from *micro-router* and
 
 ##### `path`
 
-A simple route path like that you can set any parameters using a `:` notation. The `req` parameter from `handler` will return this parameters as a object.
+A simple route path like that you can set any parameters using a `:` notation.
+The `req` parameter from `handler` will return this parameters as a object.
 
 ```js
 const { router, get } = require('micro-router')
