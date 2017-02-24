@@ -82,7 +82,8 @@ const body = await request('/hello/World')
 
 ##### handler
 
-The `handler` method is simple function that will make some action base on your path. The format of this method is `(res, res) => {}`
+The `handler` method is simple function that will make some action base on your path.
+The format of this method is `(res, res) => {}`
 
 ## 🕺 &nbsp; Contribute
 
