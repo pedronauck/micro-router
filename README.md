@@ -1,13 +1,14 @@
 :station:  _**Micro Router -**_ A tiny and functional router Zeit's [micro](https://github.com/zeit/micro)
 
+[![GitHub release](https://img.shields.io/github/release/pedronauck/micro-router.svg)]()
 [![Build Status](https://travis-ci.org/pedronauck/micro-router.svg?branch=master)](https://travis-ci.org/pedronauck/micro-router)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 ## 👌 &nbsp; Features
 
-- **Tiny**. Just 23 lines of code.
-- **Functional**. Write your method using functions.
-- **Async**. Design to use with `async/await`
+**Tiny**. Just 23 lines of code.
+**Functional**. Write your method using functions.
+**Async**. Design to use with `async/await`
 
 ## 💻 &nbsp; Usage
 
@@ -80,8 +81,7 @@ const body = await request('/hello/World')
 
 ##### handler
 
-The `handler` method is simple function that will make some action base on your path.
-The format of this method is `(res, res) => {}`.
+The `handler` method is simple function that will make some action base on your path. The format of this method is `(res, res) => {}`
 
 ## 🕺 &nbsp; Contribute
 
