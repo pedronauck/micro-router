@@ -1,4 +1,4 @@
-:station:  _**Micro Router -**_ A tiny and functional router Zeit's [micro](https://github.com/zeit/micro)
+:station:  _**Micro Router -**_ A tiny and functional router for Zeit's [micro](https://github.com/zeit/micro)
 
 [![GitHub release](https://img.shields.io/github/release/pedronauck/micro-router.svg)]()
 [![Build Status](https://travis-ci.org/pedronauck/micro-router.svg?branch=master)](https://travis-ci.org/pedronauck/micro-router)
