@@ -48,11 +48,11 @@ module.exports = router(
 )
 ```
 
-### Api
+### route methods
 
 Each route is a single basic http method that you import from *micro-router* and has the same arguments:
 
-- `[get](path, handler)`
+- `get(path, handler)`
 - `post(path, handler)`
 - `put(path, handler)`
 - `patch(path, handler)`
