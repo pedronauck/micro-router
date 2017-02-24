@@ -34,7 +34,7 @@ module.exports = router(
 
 ### `async/await`
 
-You can a async function as your method handler:
+You can use an async function as your handler:
 
 ```js
 const { send } = require('micro')
