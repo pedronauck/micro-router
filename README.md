@@ -5,9 +5,9 @@
 
 ## 👌 &nbsp; Features
 
-**Tiny**. Just 23 lines of code.
-**Functional**. Write your method using functions.
-**Async**. Design to use with `async/await`
+- **Tiny**. Just 23 lines of code.
+- **Functional**. Write your method using functions.
+- **Async**. Design to use with `async/await`
 
 ## 💻 &nbsp; Usage
 
