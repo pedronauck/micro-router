@@ -1,0 +1,30 @@
+{
+  "name": "micro-router",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "repository": "git@github.com:pedronauck/micro-router.git",
+  "author": "Pedro Nauck <pedronauck@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "micro": "^7.0.6",
+    "route-parser": "^0.0.5"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "test-listen": "^1.0.1",
+    "request-promise": "^4.1.1",
+    "xo": "^0.17.1"
+  },
+  "xo": {
+    "space": 2,
+    "semicolon": false,
+    "rules": {
+      "curly": 0,
+      "object-curly-spacing": 0,
+      "unicorn/explicit-length-check": 0
+    }
+  }
+}
