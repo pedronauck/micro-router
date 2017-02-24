@@ -1,6 +1,6 @@
 {
-  "name": "micro-router",
-  "version": "1.0.0",
+  "name": "microrouter",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "test": "xo && ava"

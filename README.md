@@ -15,7 +15,7 @@
 Install as project dependency:
 
 ```bash
-$ yarn add micro-router
+$ yarn add microrouter
 ```
 
 Then you can define your routes inside your microservice:
