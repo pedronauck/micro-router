@@ -9,10 +9,10 @@
   "author": "Pedro Nauck <pedronauck@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "micro": "^7.0.6",
     "route-parser": "^0.0.5"
   },
   "devDependencies": {
+    "micro": "^7.0.6",
     "ava": "^0.18.2",
     "got": "^6.7.1",
     "test-listen": "^1.0.1",
