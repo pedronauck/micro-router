@@ -26,5 +26,8 @@
       "object-curly-spacing": 0,
       "unicorn/explicit-length-check": 0
     }
+  },
+  "engines": {
+    "node": ">=7.6.0"
   }
 }
