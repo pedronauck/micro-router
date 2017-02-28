@@ -22,7 +22,7 @@ Then you can define your routes inside your microservice:
 
 ```js
 const { send } = require('micro')
-const { router, get } = require('micro-router')
+const { router, get } = require('microrouter')
 
 const hello = (req, res) =>
   send(res, 200, `Hello ${req.params.who}`)
@@ -38,7 +38,7 @@ You can use your handler as an async function:
 
 ```js
 const { send } = require('micro')
-const { router, get } = require('micro-router')
+const { router, get } = require('microrouter')
 
 const hello = async (req, res) =>
   send(res, 200, await Promise.resolve(`Hello ${req.params.who}`))
@@ -50,7 +50,7 @@ module.exports = router(
 
 ### route methods
 
-Each route is a single basic http method that you import from *micro-router* and has the same arguments:
+Each route is a single basic http method that you import from `microrouter` and has the same arguments:
 
 - `get(path, handler)`
 - `post(path, handler)`
@@ -66,7 +66,7 @@ A simple route path like that you can set any parameters using a `:` notation.
 The `req` parameter from `handler` will return this parameters as a object.
 
 ```js
-const { router, get } = require('micro-router')
+const { router, get } = require('microrouter')
 const request = require('some-request-lib')
 
 const hello = (req, res) => console.log(req.params) // { who: 'World' }
