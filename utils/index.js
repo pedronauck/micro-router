@@ -1,10 +1,10 @@
 const { parse } = require('url')
-const Route = require('route-parser')
+const UrlPattern = require('url-pattern')
 
-const getParamsAndQuery = (path, url) => {
-  const { query } = parse(url, true)
-  const route = new Route(path)
-  const params = route.match(url)
+const getParamsAndQuery = (pattern, url) => {
+  const { query, pathname } = parse(url, true)
+  const route = new UrlPattern(pattern)
+  const params = route.match(pathname)
 
   return { query, params }
 }
