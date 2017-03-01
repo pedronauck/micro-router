@@ -7,7 +7,7 @@
 ## 👌 &nbsp; Features
 
 - **Tiny**. Just 23 lines of code.
-- **Functional**. Write your method using functions.
+- **Functional**. Write your http methods using functions.
 - **Async**. Design to use with `async/await`
 
 ## 💻 &nbsp; Usage
@@ -27,8 +27,12 @@ const { router, get } = require('microrouter')
 const hello = (req, res) =>
   send(res, 200, `Hello ${req.params.who}`)
 
+const notfound = () =>
+  send(res, 404, 'Not found route')
+
 module.exports = router(
-  get('/hello/:who', hello)
+  get('/hello/:who', hello),
+  get('/*', notfound)
 )
 ```
 
@@ -62,7 +66,7 @@ Each route is a single basic http method that you import from `microrouter` and 
 
 ##### `path`
 
-A simple route path like that you can set any parameters using a `:` notation.
+A simple route path that you can set any parameters using a `:` notation.
 The `req` parameter from `handler` will return this parameters as a object.
 
 ```js
