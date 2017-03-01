@@ -1,7 +1,7 @@
 {
   "name": "microrouter",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "xo && ava"
   },
