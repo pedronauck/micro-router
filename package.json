@@ -1,5 +1,6 @@
 {
   "name": "microrouter",
+  "description": "🚉 A tiny and functional router for Zeit's Micro",
   "version": "1.2.2",
   "main": "lib/index.js",
   "scripts": {
