@@ -66,18 +66,18 @@ Each route is a single basic http method that you import from `microrouter` and 
 
 #### `path`
 
-A simple url pattern that you can define your path. In this path you can set your parameters using a `:` notation. The `req` parameter from `handler` will return this parameters as a object.
+A simple url pattern that you can define your path. In this path you can set your parameters using a `:` notation. The `req` parameter from `handler` will return this parameters as an object.
 
-For more information about how you can define your path, see [url-pattern](https://github.com/snd/url-pattern), that's the package that we can use to match your paths.
+For more information about how you can define your path, see [url-pattern](https://github.com/snd/url-pattern) that's the package that we're using to match paths.
 
 #### handler
 
-The `handler` method is simple function that will make some action base on your path.
+The `handler` method is a simple function that will make some action base on your path.
 The format of this method is `(res, res) => {}`
 
 ##### `req.params`
 
-As you can see below, the `req` parameter has a property called `params` that represent the parameters that you defined in yout `path`:
+As you can see below, the `req` parameter has a property called `params` that represents the parameters defined in your `path`:
 
 ```js
 const { router, get } = require('microrouter')
@@ -96,7 +96,7 @@ console.log(response)  // { who: 'World' }
 
 ##### `req.query`
 
-The `req` parameter also has a `query` property, that represent the `queries` defined in your requision url:
+The `req` parameter also has a `query` property that represents the `queries` defined in your requision url:
 
 ```js
 const { router, get } = require('microrouter')
@@ -115,7 +115,7 @@ console.log(response)  // { id: 1 }
 
 ##### `req.body`
 
-Finally, the last property of `req` parameter that you might use a lot is `body`, that represent your body requisition passed through your method. Note that `body` result is the same that you will sent, here the body hasn't any parser, if you can parse it you need to do that by yourself
+Finally, the last property of `req` parameter that you might use a lot is `body` that representsfix your body requisition passed through your method. Note that `body` result is the same that you will sent, here the body hasn't any parser, if you can parse it you need to do that by yourself
 
 ```js
 const { router, post } = require('microrouter')
