@@ -57,13 +57,13 @@ module.exports = router(
 
 Each route is a single basic http method that you import from `microrouter` and has the same arguments:
 
-- `get(path, handler)`
-- `post(path, handler)`
-- `put(path, handler)`
-- `patch(path, handler)`
-- `delete(path, handler)`
-- `head(path, handler)`
-- `options(path, handler)`
+- `get(path = String, handler = Function)`
+- `post(path = String, handler = Function)`
+- `put(path = String, handler = Function)`
+- `patch(path = String, handler = Function)`
+- `delete(path = String, handler = Function)`
+- `head(path = String, handler = Function)`
+- `options(path = String, handler = Function)`
 
 #### `path`
 
@@ -74,7 +74,7 @@ For more information about how you can define your path, see [url-pattern](https
 #### handler
 
 The `handler` method is a simple function that will make some action base on your path.
-The format of this method is `(res, res) => {}`
+The format of this function is `(res, res) => {}`
 
 ##### `req.params`
 
