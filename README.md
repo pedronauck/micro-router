@@ -65,7 +65,7 @@ Each route is a single basic http method that you import from `microrouter` and 
 - `head(path = String, handler = Function)`
 - `options(path = String, handler = Function)`
 
-#### `path`
+#### path
 
 A simple url pattern that you can define your path. In this path you can set your parameters using a `:` notation. The `req` parameter from `handler` will return this parameters as an object.
 
