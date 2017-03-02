@@ -3,7 +3,8 @@
   "version": "1.2.1",
   "main": "lib/index.js",
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && nyc ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": "git@github.com:pedronauck/micro-router.git",
   "author": "Pedro Nauck <pedronauck@gmail.com>",
@@ -14,6 +15,8 @@
   },
   "devDependencies": {
     "ava": "^0.18.2",
+    "coveralls": "^2.11.16",
+    "nyc": "^10.1.2",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "test-listen": "^1.0.1",

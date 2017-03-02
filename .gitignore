@@ -38,3 +38,7 @@ jspm_packages
 
 # Yarn
 yarn.lock
+
+# nyc
+coverage
+.nyc_output
