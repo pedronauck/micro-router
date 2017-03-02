@@ -2,6 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/pedronauck/micro-router.svg)]()
 [![Build Status](https://travis-ci.org/pedronauck/micro-router.svg?branch=master)](https://travis-ci.org/pedronauck/micro-router)
+[![Coveralls](https://img.shields.io/coveralls/pedronauck/micro-router.svg)]()
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 ## 👌 &nbsp; Features
