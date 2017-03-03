@@ -1,5 +1,4 @@
 const { parse } = require('url')
-const { json } = require('micro')
 const UrlPattern = require('url-pattern')
 
 const getParamsAndQuery = (pattern, url) => {
@@ -10,15 +9,6 @@ const getParamsAndQuery = (pattern, url) => {
   return { query, params }
 }
 
-const parseBody = async req => {
-  try {
-    return await json(req)
-  } catch (err) {
-    return {}
-  }
-}
-
 module.exports = {
-  getParamsAndQuery,
-  parseBody
+  getParamsAndQuery
 }

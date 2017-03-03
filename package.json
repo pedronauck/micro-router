@@ -11,12 +11,12 @@
   "author": "Pedro Nauck <pedronauck@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "micro": "^7.0.6",
     "url-pattern": "^1.0.3"
   },
   "devDependencies": {
     "ava": "^0.18.2",
     "coveralls": "^2.11.16",
+    "micro": "^7.0.6",
     "nyc": "^10.1.2",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",

@@ -114,24 +114,28 @@ const response = await request('/user?id=1')
 console.log(response)  // { id: 1 }
 ```
 
-##### `req.body`
+### Parsing Body
 
-Finally, the last property of `req` parameter that you might use a lot is `body` that representsfix your body requisition passed through your method. Note that `body` result is the same that you will sent, here the body hasn't any parser, if you can parse it you need to do that by yourself
+By default, router *doens't parse anything* from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
 
-```js
+```
 const { router, post } = require('microrouter')
+const { json, send } = require('micro')
 const request = require('some-request-lib')
 
 // service.js
+const user = async (req, res) => {
+  const body = await json(req)
+  send(res, 200, body)
+}
+
 module.exports = router(
-  post('/user', (req, res) => req.body)
+  post('/user', user)
 )
 
 // test.js
-const body = { name: 'John' }
-const response = await request.post('/user', { body, json: true })
-
-console.log(response)  // { name: 'John' }
+const body = { id: 1 }
+const response = await request.post('/user', { body })
 ```
 
 ## 🕺 &nbsp; Contribute
