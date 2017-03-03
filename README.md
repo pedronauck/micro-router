@@ -118,7 +118,7 @@ console.log(response)  // { id: 1 }
 
 By default, router *doens't parse anything* from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
 
-```
+```js
 const { router, post } = require('microrouter')
 const { json, send } = require('micro')
 const request = require('some-request-lib')
