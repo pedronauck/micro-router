@@ -28,7 +28,7 @@ const { router, get } = require('microrouter')
 const hello = (req, res) =>
   send(res, 200, `Hello ${req.params.who}`)
 
-const notfound = () =>
+const notfound = (req, res) =>
   send(res, 404, 'Not found route')
 
 module.exports = router(
