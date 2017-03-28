@@ -29,7 +29,8 @@
     "rules": {
       "curly": 0,
       "object-curly-spacing": 0,
-      "unicorn/explicit-length-check": 0
+      "unicorn/explicit-length-check": 0,
+      "no-await-in-loop": 0
     }
   },
   "engines": {
