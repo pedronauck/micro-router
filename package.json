@@ -1,7 +1,7 @@
 {
   "name": "microrouter",
   "description": "🚉 A tiny and functional router for Zeit's Micro",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "main": "lib/index.js",
   "scripts": {
     "test": "xo && nyc ava",
