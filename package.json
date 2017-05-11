@@ -2,8 +2,10 @@
   "name": "microrouter",
   "description": "🚉 A tiny and functional router for Zeit's Micro",
   "version": "2.1.0",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
+  "jsnext:main": "lib/index.js",
   "scripts": {
+    "build": "rm -rf dist/* && babel lib --ignore *.test.js --out-dir dist --copy-files",
     "test": "xo && nyc ava",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -15,6 +17,8 @@
   },
   "devDependencies": {
     "ava": "^0.18.2",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "coveralls": "^2.11.16",
     "micro": "^7.0.6",
     "nyc": "^10.1.2",
@@ -34,6 +38,6 @@
     }
   },
   "engines": {
-    "node": ">=7.6.0"
+    "node": ">=6.10.0"
   }
 }
