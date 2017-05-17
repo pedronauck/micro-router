@@ -61,7 +61,7 @@ Each route is a single basic http method that you import from `microrouter` and 
 - `post(path = String, handler = Function)`
 - `put(path = String, handler = Function)`
 - `patch(path = String, handler = Function)`
-- `delete(path = String, handler = Function)`
+- `del(path = String, handler = Function)`
 - `head(path = String, handler = Function)`
 - `options(path = String, handler = Function)`
 
