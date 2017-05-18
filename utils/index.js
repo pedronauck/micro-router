@@ -1,11 +1,13 @@
 const { parse } = require('url')
 const UrlPattern = require('url-pattern')
 
-const getParamsAndQuery = (pattern, url) => {
+const getParamsAndQuery = (patternOrRoute, url) => {
   const { query, pathname } = parse(url, true)
-  const route = new UrlPattern(pattern)
-  const params = route.match(pathname)
 
+  const route =
+    patternOrRoute instanceof UrlPattern ? patternOrRoute : new UrlPattern(patternOrRoute)
+
+  const params = route.match(pathname)
   return { query, params }
 }
 
