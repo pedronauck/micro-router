@@ -3,6 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/pedronauck/micro-router.svg)]()
 [![Build Status](https://travis-ci.org/pedronauck/micro-router.svg?branch=master)](https://travis-ci.org/pedronauck/micro-router)
 [![Coveralls](https://img.shields.io/coveralls/pedronauck/micro-router.svg)]()
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebdcc3e942b14363a96438b41c770b32)](https://www.codacy.com/app/pedronauck/micro-router?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pedronauck/micro-router&amp;utm_campaign=Badge_Grade)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
 ## 👌 &nbsp; Features
