@@ -1,5 +1,6 @@
 :station:  _**Micro Router -**_ A tiny and functional router for Zeit's [micro](https://github.com/zeit/micro)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebdcc3e942b14363a96438b41c770b32)](https://www.codacy.com/app/pedronauck/micro-router?utm_source=github.com&utm_medium=referral&utm_content=pedronauck/micro-router&utm_campaign=badger)
 [![GitHub release](https://img.shields.io/github/release/pedronauck/micro-router.svg)]()
 [![Build Status](https://travis-ci.org/pedronauck/micro-router.svg?branch=master)](https://travis-ci.org/pedronauck/micro-router)
 [![Coveralls](https://img.shields.io/coveralls/pedronauck/micro-router.svg)]()
