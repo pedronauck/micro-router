@@ -13,7 +13,7 @@
   "author": "Pedro Nauck <pedronauck@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "micro": "^7.3.3",
+    "micro": "^8.0.1",
     "url-pattern": "^1.0.3"
   },
   "devDependencies": {
