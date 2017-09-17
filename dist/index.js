@@ -18,6 +18,7 @@ const methodFn = method => (path, handler) => {
     if (params && req.method === method) {
       return handler(Object.assign(req, { params, query }), res);
     }
+    return undefined;
   };
 };
 
@@ -25,7 +26,7 @@ exports.router = (...funcs) => (() => {
   var _ref = _asyncToGenerator(function* (req, res) {
     for (const fn of funcs) {
       const result = yield fn(req, res);
-      if (result || res.headersSent) return result;
+      if (result !== undefined || res.headersSent) return result;
     }
 
     send(res, 404, `Cannot ${req.method} ${req.url}`);
