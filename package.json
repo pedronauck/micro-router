@@ -24,12 +24,13 @@
     "coveralls": "^2.11.16",
     "nyc": "^10.1.2",
     "request": "^2.79.0",
+    "micro": "^9.0.0",
     "request-promise": "^4.1.1",
     "test-listen": "^1.0.1",
     "xo": "^0.17.1"
   },
   "peerDependencies": {
-    "micro": "^8.0.1"
+    "micro": "^9.0.0",
   },
   "xo": {
     "space": 2,
