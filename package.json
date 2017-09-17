@@ -16,6 +16,7 @@
     "url-pattern": "^1.0.3"
   },
   "devDependencies": {
+    "np": "^2.16.0",
     "ava": "^0.18.2",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",

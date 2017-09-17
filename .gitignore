@@ -36,9 +36,6 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-# Yarn
-yarn.lock
-
 # nyc
 coverage
 .nyc_output
