@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "jsnext:main": "lib/index.js",
   "scripts": {
+    "release": "np",
     "build": "rm -rf dist/* && babel lib --ignore *.test.js --out-dir dist --copy-files",
     "test": "xo && nyc ava",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
