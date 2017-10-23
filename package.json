@@ -17,20 +17,17 @@
     "url-pattern": "^1.0.3"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
+    "ava": "^0.22.0",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "coveralls": "^2.11.16",
+    "coveralls": "^3.0.0",
     "micro": "^9.0.0",
     "np": "^2.16.0",
-    "nyc": "^10.1.2",
-    "request": "^2.79.0",
-    "request-promise": "^4.1.1",
-    "test-listen": "^1.0.1",
-    "xo": "^0.17.1"
-  },
-  "peerDependencies": {
-    "micro": "^9.0.0"
+    "nyc": "^11.2.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "test-listen": "^1.0.2",
+    "xo": "^0.18.2"
   },
   "xo": {
     "space": 2,
