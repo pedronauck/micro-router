@@ -24,7 +24,7 @@ Then you can define your routes inside your microservice:
 
 ```js
 const { send } = require('micro')
-const { router, get } = require('microrouter')
+const { router, routerRoutes } = require('microrouter')
 
 const hello = (req, res) =>
   send(res, 200, `Hello ${req.params.who}`)
@@ -32,10 +32,11 @@ const hello = (req, res) =>
 const notfound = (req, res) =>
   send(res, 404, 'Not found route')
 
-module.exports = router(
-  get('/hello/:who', hello),
-  get('/*', notfound)
-)
+const r = router()
+r.get('/hello/:who', hello)
+r.get('/*', notfound)
+
+module.exports = routerRoutes(r.routes)
 ```
 
 ### `async/await`
@@ -44,14 +45,15 @@ You can use your handler as an async function:
 
 ```js
 const { send } = require('micro')
-const { router, get } = require('microrouter')
+const { router, routerRoutes } = require('microrouter')
 
 const hello = async (req, res) =>
   send(res, 200, await Promise.resolve(`Hello ${req.params.who}`))
 
-module.exports = router(
-  get('/hello/:who', hello)
-)
+const r = router()
+r.get('/hello/:who', hello)
+
+module.exports = routerRoutes(r.routes)
 ```
 
 ### route methods
@@ -82,13 +84,14 @@ The format of this function is `(res, res) => {}`
 As you can see below, the `req` parameter has a property called `params` that represents the parameters defined in your `path`:
 
 ```js
-const { router, get } = require('microrouter')
+const { router, routerRoutes } = require('microrouter')
 const request = require('some-request-lib')
 
 // service.js
-module.exports = router(
-  get('/hello/:who', (req, res) => req.params)
-)
+const r = router()
+r.get('/hello/:who', (req, res) => req.params))
+
+module.exports = routerRoutes(r.routes)
 
 // test.js
 const response = await request('/hello/World')
@@ -101,13 +104,14 @@ console.log(response)  // { who: 'World' }
 The `req` parameter also has a `query` property that represents the `queries` defined in your requision url:
 
 ```js
-const { router, get } = require('microrouter')
+const { router, routerRoutes } = require('microrouter')
 const request = require('some-request-lib')
 
 // service.js
-module.exports = router(
-  get('/user', (req, res) => req.query)
-)
+const r = router()
+r.get('/user', (req, res) => req.query))
+
+module.exports = routerRoutes(r.routes)
 
 // test.js
 const response = await request('/user?id=1')
@@ -120,7 +124,7 @@ console.log(response)  // { id: 1 }
 By default, router *doens't parse anything* from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
 
 ```js
-const { router, post } = require('microrouter')
+const { router, routerRoutes } = require('microrouter')
 const { json, send } = require('micro')
 const request = require('some-request-lib')
 
@@ -130,14 +134,34 @@ const user = async (req, res) => {
   send(res, 200, body)
 }
 
-module.exports = router(
-  post('/user', user)
-)
+const r = router()
+r.post('/user', user)
+
+module.exports = routerRoutes(r.routes)
 
 // test.js
 const body = { id: 1 }
 const response = await request.post('/user', { body })
 ```
+
+### Nesting Router
+```js
+const { router, routerRoutes } = require('microrouter')
+const request = require('some-request-lib')
+
+// service.js
+const r = Router();
+r.get('/', () => `Hello /`);
+const a = Router();
+a.get('/a', () => `Hello /v1/a`);
+r.use('/v1', a)
+module.exports = routerRoutes(r.routes)
+  
+// test.js
+const response = await request('/v1/a')
+console.log(response)  // Hello /v1/a
+```
+
 
 ## 🕺 &nbsp; Contribute
 
