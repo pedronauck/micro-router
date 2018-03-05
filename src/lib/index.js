@@ -21,10 +21,10 @@ const methodFn = method => (path, handler) => {
 exports.router = (...funcs) => async (req, res) => {
   for (const fn of funcs) {
     const result = await fn(req, res)
-    if (result || res.headersSent) return result
+    if ((result && result != null) || res.headersSent) return result
   }
 
-  return false
+  return Promise.resolve(null)
 }
 
 METHODS.forEach(method => {

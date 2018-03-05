@@ -137,3 +137,16 @@ test('route which sends a file stream', async t => {
 
   t.is(json.name, 'microrouter')
 })
+
+test('allow handlers returning null', async t => {
+  const routes = router(get('/null', () => null))
+
+  const url = await server(routes)
+  const reponse = await request(`${url}/null`, {
+    simple: false,
+    resolveWithFullResponse: true,
+  })
+
+  t.not(reponse.statusCode, 404)
+  t.not(reponse.body, 'Cannot GET /null')
+})
