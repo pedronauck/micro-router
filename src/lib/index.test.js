@@ -6,7 +6,7 @@ const listen = require('test-listen')
 const request = require('request-promise')
 const UrlPattern = require('url-pattern')
 
-const { router, get } = require('./')
+const { withNamespace, router, get } = require('./')
 
 const server = fn => listen(micro(fn))
 
@@ -159,4 +159,21 @@ test('allow handlers returning null', async t => {
 
   t.not(reponse.statusCode, 404)
   t.not(reponse.body, 'Cannot GET /null')
+})
+
+test('routes with namespace', async t => {
+  const fooRoutes = withNamespace('/foo')
+  const barRoutes = withNamespace('/bar')
+
+  const routes = router(
+    fooRoutes(get('/test', () => 'foo')),
+    barRoutes(get('/test', () => 'bar'))
+  )
+
+  const url = await server(routes)
+  const fooResponse = await request(`${url}/foo/test`)
+  const barResponse = await request(`${url}/bar/test`)
+
+  t.is(fooResponse, 'foo')
+  t.is(barResponse, 'bar')
 })

@@ -7,8 +7,11 @@ const methodFn = method => (path, handler) => {
   if (!path) throw new Error('You need to set a valid path')
   if (!handler) throw new Error('You need to set a valid handler')
 
-  return (req, res) => {
-    const route = isPattern(path) ? path : new UrlPattern(path, patternOpts)
+  return (req, res, namespace) => {
+    const route = !isPattern(path)
+      ? new UrlPattern(`${namespace}${path}`, patternOpts)
+      : path
+
     const { params, query } = getParamsAndQuery(route, req.url)
 
     if (params && req.method === method) {
@@ -17,14 +20,17 @@ const methodFn = method => (path, handler) => {
   }
 }
 
-exports.router = (...funcs) => async (req, res) => {
+const findRoute = (funcs, namespace = '') => async (req, res) => {
   for (const fn of funcs) {
-    const result = await fn(req, res)
+    const result = await fn(req, res, namespace)
     if (result || res.headersSent) return result
   }
 
   return null
 }
+
+exports.router = (...funcs) => findRoute(funcs)
+exports.withNamespace = namespace => (...funcs) => findRoute(funcs, namespace)
 
 METHODS.forEach(method => {
   exports[method === 'DELETE' ? 'del' : method.toLowerCase()] = methodFn(method)
