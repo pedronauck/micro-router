@@ -26,9 +26,7 @@ test('different routes', async t => {
 test('routes with params and query', async t => {
   const hello = req => `Hello ${req.params.msg} ${req.query.time}`
 
-  const routes = router(
-    get('/hello/:msg', hello)
-  )
+  const routes = router(get('/hello/:msg', hello))
 
   const url = await server(routes)
   const response = await request(`${url}/hello/world?time=now`)
@@ -37,9 +35,7 @@ test('routes with params and query', async t => {
 })
 
 test('routes with underline', async t => {
-  const routes = router(
-    get('/foo_bar', () => 'Hello with underline')
-  )
+  const routes = router(get('/foo_bar', () => 'Hello with underline'))
 
   const url = await server(routes)
   const response = await request(`${url}/foo_bar`)
@@ -51,9 +47,7 @@ test('async handlers', async t => {
   const hello = req =>
     Promise.resolve(`Hello ${req.params.msg} ${req.query.time}`)
 
-  const routes = router(
-    get('/hello/:msg', hello)
-  )
+  const routes = router(get('/hello/:msg', hello))
 
   const url = await server(routes)
   const response = await request(`${url}/hello/world?time=now`)
@@ -62,18 +56,11 @@ test('async handlers', async t => {
 })
 
 test('composed routes', async t => {
-  const fooRouter = router(
-    get('/foo', () => `Hello foo`)
-  )
+  const fooRouter = router(get('/foo', () => `Hello foo`))
 
-  const barRouter = router(
-    get('/bar', () => `Hello bar`)
-  )
+  const barRouter = router(get('/bar', () => `Hello bar`))
 
-  const routes = router(
-    fooRouter,
-    barRouter
-  )
+  const routes = router(fooRouter, barRouter)
 
   const url = await server(routes)
   const fooResponse = await request(`${url}/foo`)
@@ -87,10 +74,7 @@ test('multiple matching routes', async t => {
   const withPath = () => 'Hello world'
   const withParam = () => t.fail('Clashing route should not have been called')
 
-  const routes = router(
-    get('/path', withPath),
-    get('/:param', withParam)
-  )
+  const routes = router(get('/path', withPath), get('/:param', withParam))
 
   const url = await server(routes)
   const pathResponse = await request(`${url}/path`)
@@ -102,10 +86,7 @@ test('multiple matching async routes', async t => {
   const withPath = (req, res) => micro.send(res, 200, 'Hello world')
   const withParam = () => t.fail('Clashing route should not have been called')
 
-  const routes = router(
-    get('/path', withPath),
-    get('/:param', withParam)
-  )
+  const routes = router(get('/path', withPath), get('/:param', withParam))
 
   const url = await server(routes)
   const pathResponse = await request(`${url}/path`)
@@ -133,13 +114,12 @@ test('error without handler', t => {
 
 test('route which sends a Stream', async t => {
   const stream = new Readable()
-  stream._read = () => {} // Noop
-  stream.push('foo')
-  stream.push(null) // End
 
-  const routes = router(
-    get('/', (req, res) => micro.send(res, 200, stream))
-  )
+  stream._read = () => {}
+  stream.push('foo')
+  stream.push(null)
+
+  const routes = router(get('/', (req, res) => micro.send(res, 200, stream)))
 
   const url = await server(routes)
   const response = await request(url)
@@ -149,14 +129,10 @@ test('route which sends a Stream', async t => {
 
 test('route which sends a file stream', async t => {
   const stream = fs.createReadStream('./package.json')
-
-  const routes = router(
-    get('/', (req, res) => micro.send(res, 200, stream))
-  )
+  const routes = router(get('/', (req, res) => micro.send(res, 200, stream)))
 
   const url = await server(routes)
   const response = await request(url)
-
   const json = JSON.parse(response)
 
   t.is(json.name, 'microrouter')

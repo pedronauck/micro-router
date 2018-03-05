@@ -1,16 +1,15 @@
-:station:  _**Micro Router -**_ A tiny and functional router for ZEIT's [micro](https://github.com/zeit/micro)
+:station: _**Micro Router -**_ A tiny and functional router for ZEIT's [micro](https://github.com/zeit/micro)
 
 [![GitHub release](https://img.shields.io/github/release/pedronauck/micro-router.svg)]()
 [![Build Status](https://travis-ci.org/pedronauck/micro-router.svg?branch=master)](https://travis-ci.org/pedronauck/micro-router)
 [![Coveralls](https://img.shields.io/coveralls/pedronauck/micro-router.svg)]()
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebdcc3e942b14363a96438b41c770b32)](https://www.codacy.com/app/pedronauck/micro-router?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=pedronauck/micro-router&amp;utm_campaign=Badge_Grade)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebdcc3e942b14363a96438b41c770b32)](https://www.codacy.com/app/pedronauck/micro-router?utm_source=github.com&utm_medium=referral&utm_content=pedronauck/micro-router&utm_campaign=Badge_Grade)
 
 ## 👌 &nbsp; Features
 
-- **Tiny**. Just 23 lines of code.
-- **Functional**. Write your http methods using functions.
-- **Async**. Design to use with `async/await`
+* **Tiny**. Just 23 lines of code.
+* **Functional**. Write your http methods using functions.
+* **Async**. Design to use with `async/await`
 
 ## 💻 &nbsp; Usage
 
@@ -26,16 +25,11 @@ Then you can define your routes inside your microservice:
 const { send } = require('micro')
 const { router, get } = require('microrouter')
 
-const hello = (req, res) =>
-  send(res, 200, `Hello ${req.params.who}`)
+const hello = (req, res) => send(res, 200, `Hello ${req.params.who}`)
 
-const notfound = (req, res) =>
-  send(res, 404, 'Not found route')
+const notfound = (req, res) => send(res, 404, 'Not found route')
 
-module.exports = router(
-  get('/hello/:who', hello),
-  get('/*', notfound)
-)
+module.exports = router(get('/hello/:who', hello), get('/*', notfound))
 ```
 
 ### `async/await`
@@ -49,22 +43,20 @@ const { router, get } = require('microrouter')
 const hello = async (req, res) =>
   send(res, 200, await Promise.resolve(`Hello ${req.params.who}`))
 
-module.exports = router(
-  get('/hello/:who', hello)
-)
+module.exports = router(get('/hello/:who', hello))
 ```
 
 ### route methods
 
 Each route is a single basic http method that you import from `microrouter` and has the same arguments:
 
-- `get(path = String, handler = Function)`
-- `post(path = String, handler = Function)`
-- `put(path = String, handler = Function)`
-- `patch(path = String, handler = Function)`
-- `del(path = String, handler = Function)`
-- `head(path = String, handler = Function)`
-- `options(path = String, handler = Function)`
+* `get(path = String, handler = Function)`
+* `post(path = String, handler = Function)`
+* `put(path = String, handler = Function)`
+* `patch(path = String, handler = Function)`
+* `del(path = String, handler = Function)`
+* `head(path = String, handler = Function)`
+* `options(path = String, handler = Function)`
 
 #### path
 
@@ -117,7 +109,7 @@ console.log(response)  // { id: 1 }
 
 ### Parsing Body
 
-By default, router *doens't parse anything* from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
+By default, router _doens't parse anything_ from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
 
 ```js
 const { router, post } = require('microrouter')
@@ -141,7 +133,7 @@ const response = await request.post('/user', { body })
 
 ## 🕺 &nbsp; Contribute
 
-1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
-2. Install dependencies using Yarn: `yarn install`
-3. Make the necessary changes and ensure that the tests are passing using `yarn test`
-4. Send a pull request 🙌
+1.  [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
+2.  Install dependencies using Yarn: `yarn install`
+3.  Make the necessary changes and ensure that the tests are passing using `yarn test`
+4.  Send a pull request 🙌

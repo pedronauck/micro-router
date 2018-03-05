@@ -6,9 +6,12 @@
   "jsnext:main": "lib/index.js",
   "scripts": {
     "release": "np",
-    "build": "rm -rf dist/* && babel lib --ignore *.test.js --out-dir dist --copy-files",
-    "test": "xo && nyc ava",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "lint": "eslint ./src/**/*.js",
+    "build":
+      "rm -rf dist/* && babel src/lib --ignore *.test.js --out-dir dist --copy-files",
+    "test": "yarn lint && nyc ava",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "format": "prettier --write \"src/**/*.js\""
   },
   "repository": "git@github.com:pedronauck/micro-router.git",
   "author": "Pedro Nauck <pedronauck@gmail.com>",
@@ -17,29 +20,30 @@
     "url-pattern": "^1.0.3"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "ava": "^0.25.0",
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "coveralls": "^3.0.0",
-    "micro": "^9.0.0",
-    "np": "^2.16.0",
-    "nyc": "^11.2.1",
+    "eslint": "^4.18.2",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.15.0-rc.8",
+    "lint-staged": "^7.0.0",
+    "micro": "^9.1.0",
+    "np": "^2.20.1",
+    "nyc": "^11.4.1",
+    "prettier": "^1.11.1",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "test-listen": "^1.0.2",
-    "xo": "^0.18.2"
-  },
-  "xo": {
-    "space": 2,
-    "semicolon": false,
-    "rules": {
-      "curly": 0,
-      "object-curly-spacing": 0,
-      "unicorn/explicit-length-check": 0,
-      "no-await-in-loop": 0
-    }
+    "test-listen": "^1.1.0"
   },
   "engines": {
     "node": ">=6.10.0"
+  },
+  "lint-staged": {
+    "src/**/*.js": ["yarn format", "git add"]
+  },
+  "husky": {
+    "pre-commit": "lint-staged && npm test"
   }
 }
