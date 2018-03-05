@@ -1,14 +1,13 @@
 {
   "name": "microrouter",
   "description": "🚉 A tiny and functional router for ZEIT's Micro",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "main": "dist/index.js",
   "jsnext:main": "lib/index.js",
   "scripts": {
     "release": "np",
     "lint": "eslint ./src/**/*.js",
-    "build":
-      "yarn lint && rm -rf dist/* && babel src/lib --ignore *.test.js --out-dir dist --copy-files",
+    "build": "yarn lint && rm -rf dist/* && babel src/lib --ignore *.test.js --out-dir dist --copy-files",
     "test": "nyc ava",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "format": "yarn lint && prettier --write \"src/**/*.js\""
@@ -41,7 +40,10 @@
     "node": ">=6.10.0"
   },
   "lint-staged": {
-    "src/**/*.js": ["yarn format", "git add"]
+    "src/**/*.js": [
+      "yarn format",
+      "git add"
+    ]
   },
   "husky": {
     "pre-commit": "lint-staged && npm test"
