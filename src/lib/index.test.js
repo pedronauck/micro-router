@@ -4,6 +4,7 @@ const test = require('ava')
 const micro = require('micro')
 const listen = require('test-listen')
 const request = require('request-promise')
+const UrlPattern = require('url-pattern')
 
 const { router, get } = require('./')
 
@@ -57,7 +58,6 @@ test('async handlers', async t => {
 
 test('composed routes', async t => {
   const fooRouter = router(get('/foo', () => `Hello foo`))
-
   const barRouter = router(get('/bar', () => `Hello bar`))
 
   const routes = router(fooRouter, barRouter)
@@ -77,9 +77,9 @@ test('multiple matching routes', async t => {
   const routes = router(get('/path', withPath), get('/:param', withParam))
 
   const url = await server(routes)
-  const pathResponse = await request(`${url}/path`)
+  const reponse = await request(`${url}/path`)
 
-  t.is(pathResponse, 'Hello world')
+  t.is(reponse, 'Hello world')
 })
 
 test('multiple matching async routes', async t => {
@@ -89,9 +89,9 @@ test('multiple matching async routes', async t => {
   const routes = router(get('/path', withPath), get('/:param', withParam))
 
   const url = await server(routes)
-  const pathResponse = await request(`${url}/path`)
+  const reponse = await request(`${url}/path`)
 
-  t.is(pathResponse, 'Hello world')
+  t.is(reponse, 'Hello world')
 })
 
 test('error without path and handler', t => {
@@ -136,6 +136,16 @@ test('route which sends a file stream', async t => {
   const json = JSON.parse(response)
 
   t.is(json.name, 'microrouter')
+})
+
+test('passing UrlPattern instance as path argument', async t => {
+  const pattern = new UrlPattern(/^\/api$/)
+  const routes = router(get(pattern, () => 'with custom pattern'))
+
+  const url = await server(routes)
+  const response = await request(`${url}/api`)
+
+  t.is(response, 'with custom pattern')
 })
 
 test('allow handlers returning null', async t => {

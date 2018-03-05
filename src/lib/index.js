@@ -1,5 +1,5 @@
 const UrlPattern = require('url-pattern')
-const { getParamsAndQuery, patternOpts } = require('../utils')
+const { getParamsAndQuery, isPattern, patternOpts } = require('../utils')
 
 const METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS']
 
@@ -7,9 +7,8 @@ const methodFn = method => (path, handler) => {
   if (!path) throw new Error('You need to set a valid path')
   if (!handler) throw new Error('You need to set a valid handler')
 
-  const route = new UrlPattern(path, patternOpts)
-
   return (req, res) => {
+    const route = isPattern(path) ? path : new UrlPattern(path, patternOpts)
     const { params, query } = getParamsAndQuery(route, req.url)
 
     if (params && req.method === method) {
@@ -21,10 +20,10 @@ const methodFn = method => (path, handler) => {
 exports.router = (...funcs) => async (req, res) => {
   for (const fn of funcs) {
     const result = await fn(req, res)
-    if ((result && result != null) || res.headersSent) return result
+    if (result || res.headersSent) return result
   }
 
-  return Promise.resolve(null)
+  return null
 }
 
 METHODS.forEach(method => {
