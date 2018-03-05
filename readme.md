@@ -131,6 +131,41 @@ const body = { id: 1 }
 const response = await request.post('/user', { body })
 ```
 
+### UrlPattern instance as path
+
+The package [url-pattern](https://github.com/snd/url-pattern) has a lot of options inside it to match url. If you has a different need for some of your paths, like make pattern from a regexp, you can pass a instance of `UrlPattern` as the path parameter:
+
+```js
+const UrlPattern = require('url-pattern')
+const { router, get } = require('microrouter')
+
+const routes = router(
+  get(
+    new UrlPattern(/^\api/),
+    () => 'This will match all routes that start with "api"'
+  )
+)
+```
+
+### Namespaced Routes
+
+If you want to create nested routes, you can define a namespace for your routes using the `withNamespace` high order function:
+
+```js
+const { withNamespace, router, get } = require('microrouter')
+const { json, send } = require('micro')
+
+const oldApi = withNamespace('/api/v1')
+const newApi = withNamespace('/api/v2')
+
+const routes = router(
+  oldApi(get('/', () => 'My legacy api route')),
+  newApi(get('/', () => 'My new api route'))
+)
+```
+
+_PS: The nested routes doesn't work if you pass a UrlPattern instance as path argument!_
+
 ## 🕺 &nbsp; Contribute
 
 1.  [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device
