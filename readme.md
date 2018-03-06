@@ -7,7 +7,7 @@
 
 ## 👌 &nbsp; Features
 
-* **Tiny**. Just 23 lines of code.
+* **Tiny**. Just couple lines of code.
 * **Functional**. Write your http methods using functions.
 * **Async**. Design to use with `async/await`
 
