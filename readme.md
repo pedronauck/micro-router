@@ -67,7 +67,7 @@ For more information about how you can define your path, see [url-pattern](https
 #### handler
 
 The `handler` method is a simple function that will make some action base on your path.
-The format of this function is `(res, res) => {}`
+The format of this function is `(req, res) => {}`
 
 ##### `req.params`
 
