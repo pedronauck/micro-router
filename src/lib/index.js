@@ -8,9 +8,12 @@ const methodFn = method => (path, handler) => {
   if (!handler) throw new Error('You need to set a valid handler')
 
   return (req, res, namespace) => {
-    const route = !isPattern(path)
-      ? new UrlPattern(`${namespace}${path}`, patternOpts)
-      : path
+    if (path === '/') {
+      path = '(/)'
+    }
+    const route = isPattern(path)
+      ? path
+      : new UrlPattern(`${namespace}${path}`, patternOpts)
 
     const { params, query } = getParamsAndQuery(route, req.url)
 
