@@ -177,3 +177,25 @@ test('routes with namespace', async t => {
   t.is(fooResponse, 'foo')
   t.is(barResponse, 'bar')
 })
+
+test('route with namespace without trailing slash', async t => {
+  const fooRoutes = withNamespace('/foo')
+
+  const routes = router(fooRoutes(get('/', () => 'foo')))
+
+  const url = await server(routes)
+  const fooResponse = await request(`${url}/foo`)
+
+  t.is(fooResponse, 'foo')
+})
+
+test('route with namespace with trailing slash', async t => {
+  const fooRoutes = withNamespace('/foo')
+
+  const routes = router(fooRoutes(get('/', () => 'foo')))
+
+  const url = await server(routes)
+  const fooResponse = await request(`${url}/foo/`)
+
+  t.is(fooResponse, 'foo')
+})
