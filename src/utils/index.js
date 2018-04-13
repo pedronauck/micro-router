@@ -3,7 +3,7 @@ const UrlPattern = require('url-pattern')
 
 const patternOpts = {
   segmentNameCharset: 'a-zA-Z0-9_-',
-  segmentValueCharset: 'a-zA-Z0-9@\.\+\-\_'
+  segmentValueCharset: 'a-zA-Z0-9@.+-_'
 }
 
 const isPattern = pattern => pattern instanceof UrlPattern
