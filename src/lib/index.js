@@ -3,14 +3,12 @@ const { getParamsAndQuery, isPattern, patternOpts } = require('../utils')
 
 const METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS']
 
-const methodFn = method => (path, handler) => {
-  if (!path) throw new Error('You need to set a valid path')
+const methodFn = method => (givenPath, handler) => {
+  if (!givenPath) throw new Error('You need to set a valid path')
   if (!handler) throw new Error('You need to set a valid handler')
 
   return (req, res, namespace) => {
-    if (path === '/') {
-      path = '(/)'
-    }
+    const path = givenPath === '/' ? '(/)' : givenPath
     const route = isPattern(path)
       ? path
       : new UrlPattern(`${namespace}${path}`, patternOpts)
