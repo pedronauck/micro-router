@@ -1,7 +1,7 @@
 {
   "name": "microrouter",
   "description": "🚉 A tiny and functional router for ZEIT's Micro",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "main": "dist/lib/index.js",
   "jsnext:main": "src/lib/index.js",
   "scripts": {
