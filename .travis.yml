@@ -4,4 +4,6 @@ after_success: npm run coverage
 branches:
   only:
     - master
+git:
+  depth: 5
 cache: yarn
