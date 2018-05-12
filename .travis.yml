@@ -6,3 +6,4 @@ branches:
     - master
 git:
   depth: 5
+cache: yarn
