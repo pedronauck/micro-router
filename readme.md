@@ -60,7 +60,7 @@ Each route is a single basic http method that you import from `microrouter` and 
 
 #### path
 
-A simple url pattern that you can define your path. In this path you can set your parameters using a `:` notation. The `req` parameter from `handler` will return this parameters as an object.
+A simple url pattern that you can define your path. In this path, you can set your parameters using a `:` notation. The `req` parameter from `handler` will return these parameters as an object.
 
 For more information about how you can define your path, see [url-pattern](https://github.com/snd/url-pattern) that's the package that we're using to match paths.
 
@@ -109,7 +109,7 @@ console.log(response)  // { id: 1 }
 
 ### Parsing Body
 
-By default, router _doens't parse anything_ from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
+By default, router _doesn't parse anything_ from your requisition, it's just match your paths and execute a specific handler. So, if you want to parse your body requisition you can do something like that:
 
 ```js
 const { router, post } = require('microrouter')
@@ -133,7 +133,7 @@ const response = await request.post('/user', { body })
 
 ### UrlPattern instance as path
 
-The package [url-pattern](https://github.com/snd/url-pattern) has a lot of options inside it to match url. If you has a different need for some of your paths, like make pattern from a regexp, you can pass a instance of `UrlPattern` as the path parameter:
+The package [url-pattern](https://github.com/snd/url-pattern) has a lot of options inside it to match url. If you have a different need for some of your paths, like a make pattern from a regexp, you can pass an instance of `UrlPattern` as the path parameter:
 
 ```js
 const UrlPattern = require('url-pattern')
