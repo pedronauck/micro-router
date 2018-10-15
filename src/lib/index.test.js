@@ -199,3 +199,15 @@ test('route with namespace with trailing slash', async t => {
 
   t.is(fooResponse, 'foo')
 })
+
+test('route with extra arguments', async t => {
+  const serverWithSetup = fn =>
+    listen(micro((req, res) => fn(req, res, 'extra')))
+
+  const routes = router(get('/', (req, res, message) => ({ message })))
+
+  const url = await serverWithSetup(routes)
+  const response = await request(`${url}`)
+
+  t.is(JSON.parse(response).message, 'extra')
+})

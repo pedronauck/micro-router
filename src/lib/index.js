@@ -7,7 +7,7 @@ const methodFn = method => (givenPath, handler) => {
   if (!givenPath) throw new Error('You need to set a valid path')
   if (!handler) throw new Error('You need to set a valid handler')
 
-  return (req, res, namespace) => {
+  return (req, res, namespace, ...args) => {
     const path = givenPath === '/' ? '(/)' : givenPath
     const route = isPattern(path)
       ? path
@@ -16,14 +16,14 @@ const methodFn = method => (givenPath, handler) => {
     const { params, query } = getParamsAndQuery(route, req.url)
 
     if (params && req.method === method) {
-      return handler(Object.assign(req, { params, query }), res)
+      return handler(Object.assign(req, { params, query }), res, ...args)
     }
   }
 }
 
-const findRoute = (funcs, namespace = '') => async (req, res) => {
+const findRoute = (funcs, namespace = '') => async (req, res, ...args) => {
   for (const fn of funcs) {
-    const result = await fn(req, res, namespace)
+    const result = await fn(req, res, namespace, ...args)
     if (result || res.headersSent) return result
   }
 
