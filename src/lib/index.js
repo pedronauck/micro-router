@@ -31,8 +31,21 @@ const findRoute = (funcs, namespace = '') => async (req, res) => {
 }
 
 exports.router = (...funcs) => findRoute(funcs)
-exports.withNamespace = namespace => (...funcs) => findRoute(funcs, namespace)
+
+const withNamespace = namespace => (...funcs) => findRoute(funcs, namespace)
+exports.withNamespace = withNamespace
 
 METHODS.forEach(method => {
   exports[method === 'DELETE' ? 'del' : method.toLowerCase()] = methodFn(method)
 })
+
+exports.routerNamespace = (...handlers) => upperNameSpace => {
+  return async (req, res, ns) => {
+    const namespacePrefix = `${ns}${upperNameSpace}(/)(/:any)`
+    const namespace = `${ns}${upperNameSpace}`
+    const { params } = getParamsAndQuery(namespacePrefix, req.url)
+    if (params) {
+      return withNamespace(namespace)(...handlers)(req, res)
+    }
+  }
+}
