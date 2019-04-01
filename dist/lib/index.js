@@ -37,8 +37,27 @@ const findRoute = (funcs, namespace = '') => (() => {
 })();
 
 exports.router = (...funcs) => findRoute(funcs);
-exports.withNamespace = namespace => (...funcs) => findRoute(funcs, namespace);
+
+const withNamespace = namespace => (...funcs) => findRoute(funcs, namespace);
+exports.withNamespace = withNamespace;
 
 METHODS.forEach(method => {
   exports[method === 'DELETE' ? 'del' : method.toLowerCase()] = methodFn(method);
 });
+
+exports.routerNamespace = (...handlers) => upperNameSpace => {
+  return (() => {
+    var _ref2 = _asyncToGenerator(function* (req, res, ns) {
+      const namespacePrefix = `${ns}${upperNameSpace}(/)(/:any)`;
+      const namespace = `${ns}${upperNameSpace}`;
+      const { params } = getParamsAndQuery(namespacePrefix, req.url);
+      if (params) {
+        return withNamespace(namespace)(...handlers)(req, res);
+      }
+    });
+
+    return function (_x3, _x4, _x5) {
+      return _ref2.apply(this, arguments);
+    };
+  })();
+};

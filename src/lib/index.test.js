@@ -6,7 +6,7 @@ const listen = require('test-listen')
 const request = require('request-promise')
 const UrlPattern = require('url-pattern')
 
-const { withNamespace, router, get } = require('./')
+const { withNamespace, router, get, routerNamespace } = require('./')
 
 const server = fn => listen(micro(fn))
 
@@ -198,4 +198,37 @@ test('route with namespace with trailing slash', async t => {
   const fooResponse = await request(`${url}/foo/`)
 
   t.is(fooResponse, 'foo')
+})
+
+test('route under routerNamespace can be used under withNamespace', async t => {
+  const fooRoutes = withNamespace('/foo')
+
+  const final = routerNamespace(
+    get('/:id', req => req.params.id),
+    get('/', () => 'final')
+  )
+  const innerBar = routerNamespace(get('/', () => 'inner bar'), final('/final'))
+
+  const innerFoo = routerNamespace(
+    get('/', () => 'inner foo'),
+    innerBar('/bar')
+  )
+
+  const routes = router(fooRoutes(get('/', () => 'foo'), innerFoo('/bar')))
+
+  const url = await server(routes)
+  const fooResponse = await request(`${url}/foo/`)
+  t.is(fooResponse, 'foo')
+
+  const innerFooResponse = await request(`${url}/foo/bar`)
+  t.is(innerFooResponse, 'inner foo')
+
+  const innerBarResponse = await request(`${url}/foo/bar/bar`)
+  t.is(innerBarResponse, 'inner bar')
+
+  const finalResponse = await request(`${url}/foo/bar/bar/final`)
+  t.is(finalResponse, 'final')
+
+  const finalParamResponse = await request(`${url}/foo/bar/bar/final/123`)
+  t.is(finalParamResponse, '123')
 })
