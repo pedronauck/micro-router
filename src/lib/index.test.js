@@ -203,7 +203,10 @@ test('route with namespace with trailing slash', async t => {
 test('route under routerNamespace can be used under withNamespace', async t => {
   const fooRoutes = withNamespace('/foo')
 
-  const final = routerNamespace(get('/', () => 'final'))
+  const final = routerNamespace(
+    get('/:id', req => req.params.id),
+    get('/', () => 'final')
+  )
   const innerBar = routerNamespace(get('/', () => 'inner bar'), final('/final'))
 
   const innerFoo = routerNamespace(
@@ -225,4 +228,7 @@ test('route under routerNamespace can be used under withNamespace', async t => {
 
   const finalResponse = await request(`${url}/foo/bar/bar/final`)
   t.is(finalResponse, 'final')
+
+  const finalParamResponse = await request(`${url}/foo/bar/bar/final/123`)
+  t.is(finalParamResponse, '123')
 })
