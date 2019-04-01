@@ -154,7 +154,7 @@ test('allow handlers returning null', async t => {
   const url = await server(routes)
   const reponse = await request(`${url}/null`, {
     simple: false,
-    resolveWithFullResponse: true
+    resolveWithFullResponse: true,
   })
 
   t.not(reponse.statusCode, 404)
@@ -203,23 +203,15 @@ test('route with namespace with trailing slash', async t => {
 test('route under routerNamespace can be used under withNamespace', async t => {
   const fooRoutes = withNamespace('/foo')
 
-  const final = routerNamespace(
-    get('/', () => 'final')
-  )
-  const innerBar = routerNamespace(
-    get('/', () => 'inner bar'),
-    final('/final')
-  )
+  const final = routerNamespace(get('/', () => 'final'))
+  const innerBar = routerNamespace(get('/', () => 'inner bar'), final('/final'))
 
   const innerFoo = routerNamespace(
     get('/', () => 'inner foo'),
     innerBar('/bar')
   )
 
-  const routes = router(fooRoutes(
-    get('/', () => 'foo'),
-    innerFoo('/bar')
-  ))
+  const routes = router(fooRoutes(get('/', () => 'foo'), innerFoo('/bar')))
 
   const url = await server(routes)
   const fooResponse = await request(`${url}/foo/`)
